@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:21.1-alpine3.18
 
 # Set working directory
 WORKDIR /usr/src/ppares/web
