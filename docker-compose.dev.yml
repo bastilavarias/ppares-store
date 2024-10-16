@@ -1,0 +1,13 @@
+services:
+  web:
+    container_name: web
+    build:
+      context: ./web
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./web:/usr/src/ppares/web
+      - ./web/public:/usr/src/ppares/web/public
+      - /usr/src/ppares/web/node_modules
+    restart: always
+    ports:
+      - 3000:3000
