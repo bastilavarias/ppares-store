@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Moon, Sun, ShoppingCart, User, Heart } from 'lucide-react';
@@ -8,6 +8,7 @@ import { useTheme } from 'next-themes';
 
 export default function Header() {
     const [darkMode, setDarkMode] = useState(false);
+    const [shouldShowThemeSwitch, setShouldShowThemeSwitch] = useState(false);
     const { setTheme, theme } = useTheme();
 
     const toggleDarkMode = () => {
@@ -19,6 +20,21 @@ export default function Header() {
             setDarkMode(false);
         }
     };
+
+    const getSaveTheme = () => {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('theme') || null;
+        }
+    };
+
+    useEffect(() => {
+        const _theme = getSaveTheme();
+        if (_theme) {
+            setTheme(_theme);
+            setDarkMode(_theme === 'dark');
+        }
+        setShouldShowThemeSwitch(true); // Fix this line of code this is not setting a value
+    }, []);
 
     return (
         <header>
@@ -36,16 +52,20 @@ export default function Header() {
                         <Button size="icon" variant="ghost">
                             <ShoppingCart className="h-5 w-5" />
                         </Button>
-                        <Switch
-                            checked={darkMode}
-                            onCheckedChange={toggleDarkMode}
-                            className="ml-4"
-                            aria-label="Toggle dark mode"
-                        />
-                        {darkMode ? (
-                            <Moon className="h-5 w-5" />
-                        ) : (
-                            <Sun className="h-5 w-5" />
+                        {shouldShowThemeSwitch ?? (
+                            <>
+                                <Switch
+                                    checked={darkMode}
+                                    onCheckedChange={toggleDarkMode}
+                                    className="ml-4"
+                                    aria-label="Toggle dark mode"
+                                />
+                                {darkMode ? (
+                                    <Moon className="h-5 w-5" />
+                                ) : (
+                                    <Sun className="h-5 w-5" />
+                                )}
+                            </>
                         )}
                     </div>
                 </div>
