@@ -22,9 +22,7 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <Header />
-                    <main className="container mx-auto container mx-auto px-4 py-12">
-                        {children}
-                    </main>
+                    <main className="container mx-auto px-4">{children}</main>
                 </ThemeProvider>
             </body>
         </html>
