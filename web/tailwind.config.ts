@@ -9,9 +9,15 @@ const config: Config = {
     ],
     theme: {
         extend: {
+            screens: {
+                sm: '320px',
+                md: '500px',
+                lg: '640px',
+                xl: '768px',
+                '2xl': '1024px',
+            },
             fontFamily: {
-                cardo: ['Cardo'],
-                poppins: ['Poppins'],
+                rubik: ['Rubik'],
             },
             colors: {
                 background: 'hsl(var(--background))',

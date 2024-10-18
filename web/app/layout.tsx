@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import Header from '@/components/header';
 
 export const metadata: Metadata = {
     title: 'Programming Pares Official Store',
@@ -20,7 +21,10 @@ export default function RootLayout({
                     defaultTheme="light"
                     disableTransitionOnChange
                 >
-                    {children}
+                    <Header />
+                    <main className="container mx-auto container mx-auto px-4 py-12">
+                        {children}
+                    </main>
                 </ThemeProvider>
             </body>
         </html>
