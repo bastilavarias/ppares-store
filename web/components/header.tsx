@@ -33,7 +33,7 @@ export default function Header() {
             setTheme(_theme);
             setDarkMode(_theme === 'dark');
         }
-        setShouldShowThemeSwitch(true); // Fix this line of code this is not setting a value
+        setShouldShowThemeSwitch(true);
     }, []);
 
     return (
@@ -52,7 +52,7 @@ export default function Header() {
                         <Button size="icon" variant="ghost">
                             <ShoppingCart className="h-5 w-5" />
                         </Button>
-                        {shouldShowThemeSwitch ?? (
+                        {shouldShowThemeSwitch && (
                             <>
                                 <Switch
                                     checked={darkMode}
